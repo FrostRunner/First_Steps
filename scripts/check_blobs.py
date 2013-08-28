@@ -7,9 +7,6 @@ import os
 import shutil
 import subprocess
 
-# user = "win12\Administrator"
-# pasw = "Acronis123"
-# mail = "Administrator@win12.dcon.local"
 mail_restore_path = r'C:\tools\mail_restore_2013.exe'
 db_path = r"E:\DB\RND13.edb"
 ews_location = r"C:\tools\EwsCmd.exe"
@@ -17,7 +14,6 @@ used_database = "RND13"
 bin = "C:\\tools"
 tmp = "C:\\tmp"
 eseblob_cmd = r"C:\tools\eseblob.exe parse"
-rdata = (r"C:\workdir\blob_fts\0_0.txt")
 
 
 
@@ -108,11 +104,11 @@ def main(args):
     workdir = args[1]
     tmp_dir = r"%s\blobs_storage" % workdir
     garbage_folder = r"%s\garbage" % tmp_dir
-    # #setup()
-    # #run_cmd(r'C:\programdata\ps.exe -inputformat none -command "& {Dismount-Database -Identity %s}"' % used_database)
-    # set_env(db_path, bin, tmp)
-    # list_tables()
-    # upload_blobs(tmp_dir)
+    setup()
+    run_cmd(r'C:\programdata\ps.exe -inputformat none -command "& {Dismount-Database -Identity %s}"' % used_database)
+    set_env(db_path, bin, tmp)
+    list_tables()
+    upload_blobs(tmp_dir)
     
     create_folder(garbage_folder)
     read_blob_files(tmp_dir, garbage_folder)
